@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { Range } from '@/data/mock/priceHistory';
 import { theme } from '@/design/theme';
@@ -8,13 +7,14 @@ import { formatCents, formatPercent, trendSign } from '@/domain/money';
 import { DashboardModel } from '@/hooks/usePortfolioStats';
 import { Sparkline } from '@/components/charts/Sparkline';
 import { Skeleton } from '@/components/primitives/Skeleton';
+import { AnimatedMoney } from '@/components/primitives/AnimatedMoney';
 import { Text } from '@/components/primitives/Text';
 import { RangeSelector } from './RangeSelector';
 
 /**
- * En-tête « portefeuille » du Dashboard : valeur totale en grand, variation
- * colorée, courbe agrégée plein-largeur et sélecteur de période. C'est l'âme
- * "Bourse/Crypto" de l'app — la première chose que voit l'utilisateur.
+ * En-tête « portefeuille » du Dashboard : valeur totale animée (odometer),
+ * variation colorée dans une puce, courbe agrégée plein-largeur et sélecteur
+ * de période. C'est l'âme "Bourse/Crypto" de l'app.
  */
 interface PortfolioHeaderProps {
   model: DashboardModel;
@@ -47,7 +47,7 @@ export function PortfolioHeader({
         <Skeleton width={120} height={18} style={{ marginTop: 10 }} />
         <Skeleton
           width={chartWidth}
-          height={90}
+          height={96}
           radius={theme.radius.lg}
           style={{ marginTop: 20 }}
         />
@@ -57,19 +57,11 @@ export function PortfolioHeader({
 
   return (
     <Animated.View entering={FadeIn.duration(320)} style={styles.container}>
-      <LinearGradient
-        colors={['rgba(139,92,246,0.10)', 'rgba(0,0,0,0)']}
-        style={styles.aura}
-        pointerEvents="none"
-      />
-
       <Text variant="caption" color="textTertiary">
         VALEUR DU PORTEFEUILLE
       </Text>
 
-      <Text variant="display" style={styles.total}>
-        {formatCents(model.stats.totalValueCents)}
-      </Text>
+      <AnimatedMoney cents={model.stats.totalValueCents} style={styles.total} />
 
       <View style={styles.deltaRow}>
         <View style={[styles.deltaChip, { borderColor: `${trendColor}55` }]}>
@@ -108,14 +100,7 @@ const styles = StyleSheet.create({
     paddingTop: theme.space.sm,
     paddingBottom: theme.space.lg,
   },
-  aura: {
-    position: 'absolute',
-    top: -40,
-    left: -40,
-    right: -40,
-    height: 260,
-  },
-  total: { marginTop: 6 },
+  total: { marginTop: 2, height: 48 },
   deltaRow: {
     flexDirection: 'row',
     alignItems: 'center',

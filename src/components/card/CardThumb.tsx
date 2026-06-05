@@ -59,7 +59,6 @@ function CardThumbBase({ row, width, onPress }: CardThumbProps) {
         ]}
       >
         <Animated.Image
-          // @ts-expect-error sharedTransitionTag injecté par le plugin Reanimated
           sharedTransitionTag={`card-${owned.uid}`}
           source={{ uri: card.imageUrl }}
           style={StyleSheet.absoluteFill}

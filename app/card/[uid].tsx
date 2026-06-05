@@ -12,6 +12,7 @@ import * as Haptics from 'expo-haptics';
 import Animated, { FadeIn, FadeInDown, SlideInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { generateHistory, Range } from '@/data/mock/priceHistory';
+import { AuroraBackground } from '@/components/background/AuroraBackground';
 import { theme } from '@/design/theme';
 import { formatCents, formatPercent, trendSign } from '@/domain/money';
 import { seriesDelta } from '@/domain/services/portfolio';
@@ -76,7 +77,11 @@ export default function CardDetailScreen() {
   return (
     <View style={styles.root}>
       <Animated.View entering={FadeIn.duration(220)} style={StyleSheet.absoluteFill}>
-        <Pressable style={styles.backdrop} onPress={close} />
+        <Pressable style={styles.backdrop} onPress={close}>
+          <View style={StyleSheet.absoluteFill} pointerEvents="none">
+            <AuroraBackground width={width} height={1000} opacity={0.6} />
+          </View>
+        </Pressable>
       </Animated.View>
 
       <ScrollView

@@ -145,7 +145,6 @@ function HolographicCardBase({
         >
           {/* Artwork */}
           <AnimatedImage
-            // @ts-expect-error sharedTransitionTag est typé via le plugin Reanimated
             sharedTransitionTag={sharedTag}
             source={{ uri: card.imageUrl }}
             style={styles.artwork}

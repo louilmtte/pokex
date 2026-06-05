@@ -1,7 +1,13 @@
 import React, { useMemo, useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AuroraBackground } from '@/components/background/AuroraBackground';
 import { Range } from '@/data/mock/priceHistory';
 import { theme } from '@/design/theme';
 import { PokemonCard } from '@/domain/types';
@@ -19,6 +25,7 @@ import { Text } from '@/components/primitives/Text';
 export default function MarketScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { width, height } = useWindowDimensions();
   const [range, setRange] = useState<Range>('7D');
 
   const cardsById = useCollectionStore((s) => s.cardsById);
@@ -43,8 +50,11 @@ export default function MarketScreen() {
   };
 
   return (
-    <FlatList
-      style={styles.screen}
+    <View style={styles.screen}>
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
+        <AuroraBackground width={width} height={height} opacity={0.5} />
+      </View>
+      <FlatList
       data={watchlist}
       keyExtractor={(r) => r.card.id}
       renderItem={({ item }) => (
@@ -73,7 +83,8 @@ export default function MarketScreen() {
           </View>
         </View>
       }
-    />
+      />
+    </View>
   );
 }
 

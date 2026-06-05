@@ -11,6 +11,7 @@ import { useRouter } from 'expo-router';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
+import { AuroraBackground } from '@/components/background/AuroraBackground';
 import { theme } from '@/design/theme';
 import { activeFilterCount, ResolvedRow } from '@/domain/services/query';
 import { useFilteredCards } from '@/hooks/useFilteredCards';
@@ -31,7 +32,7 @@ const COLUMNS = 3;
 export default function BinderScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const sheetRef = useRef<BottomSheet>(null);
 
   const rows = useFilteredCards();
@@ -64,6 +65,9 @@ export default function BinderScreen() {
 
   return (
     <View style={styles.screen}>
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
+        <AuroraBackground width={width} height={height} opacity={0.5} />
+      </View>
       <FlatList
         data={rows}
         keyExtractor={(r) => r.owned.uid}
