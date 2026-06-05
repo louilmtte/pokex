@@ -1,0 +1,26 @@
+name: pocketvault
+description: "PocketVault — coffre-fort holographique de collection Pokémon. UI premium dark-violet, glassmorphism, fluidité 120Hz."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  # Flutter 3.27+ / Dart 3.6+ requis (API Color.withValues, etc.).
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Gestion d'état robuste, logique métier isolée de l'UI.
+  flutter_riverpod: ^2.5.1
+  # Micro-animations premium (entrées, shimmer) déclaratives.
+  flutter_animate: ^4.5.0
+  # Gyroscope pour l'effet holographique réactif.
+  sensors_plus: ^6.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true

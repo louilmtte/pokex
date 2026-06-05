@@ -1,0 +1,18 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Generated platform folders (régénérables via `flutter create .`)
+# On garde lib/, test/, pubspec.yaml comme source de vérité.
+
+# OS
+.DS_Store

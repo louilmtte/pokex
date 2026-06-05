@@ -1,0 +1,14 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    avoid_print: true
+    sized_box_for_whitespace: true
+
+analyzer:
+  errors:
+    # Les records et tuples génèrent parfois des infos verbeuses : on garde
+    # le strict sur les vraies erreurs.
+    todo: ignore
