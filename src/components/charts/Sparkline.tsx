@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import {
   Canvas,
   Path,
@@ -63,6 +63,10 @@ export function Sparkline({
   strokeWidth = 2,
   color,
 }: SparklineProps) {
+  if (Platform.OS === 'web') {
+    return <View style={{ width, height, backgroundColor: 'transparent' }} />;
+  }
+
   const { stroke, area, headPoint, lineColor } = useMemo(() => {
     if (data.length < 2) {
       return {

@@ -21,7 +21,9 @@
       }
     },
     "android": {
-      "permissions": ["CAMERA"],
+      "permissions": [
+        "CAMERA"
+      ],
       "edgeToEdgeEnabled": true
     },
     "plugins": [
@@ -31,7 +33,8 @@
         {
           "cameraPermission": "PocketVault utilise la caméra pour scanner et identifier vos cartes Pokémon."
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true
