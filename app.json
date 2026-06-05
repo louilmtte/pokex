@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "PocketVault",
+    "slug": "pocketvault",
+    "version": "1.0.0",
+    "scheme": "pocketvault",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "backgroundColor": "#000000",
+    "splash": {
+      "backgroundColor": "#000000",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "PocketVault utilise la caméra pour scanner et identifier vos cartes Pokémon.",
+        "UIRequiresFullScreen": true,
+        "CADisableMinimumFrameDurationOnPhone": true
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA"],
+      "edgeToEdgeEnabled": true
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "PocketVault utilise la caméra pour scanner et identifier vos cartes Pokémon."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
